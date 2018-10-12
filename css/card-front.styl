@@ -1,0 +1,70 @@
+.card-front {
+  &.black {
+    color: #333;
+  }
+  &.red {
+    color: #ee0000;
+  }
+}
+
+.card-suits {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20%;
+  height: 30%;
+
+  .card-suit {
+    position: absolute;
+    font-size: 1.0625rem;
+
+    &.ace {
+      width: 2em;
+      height: 2em;
+    }
+
+    &.royal {
+      font-size: 2.5em;
+    }
+
+    &:not(.royal) {
+      width: 1em;
+      height: 1em;
+      background-position: 50% 50%;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.card-tl, .card-br {
+  position: absolute;
+
+  .card-rank, .card-suit {
+    text-align: center;
+    transform: translate(-50%, 0);
+  }
+
+  .card-rank {
+    font-size: 0.875rem;
+    letter-spacing: -0.0625rem;
+    line-height: 1.5;
+  }
+  .card-suit {
+    width: .625em;
+    height: .625em;
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.card-tl {
+  top: 0rem;
+  left: .4375rem;
+}
+.card-br {
+  bottom: 0rem;
+  right: .4375rem;
+  transform: rotate(180deg);
+}

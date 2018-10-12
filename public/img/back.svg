@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="112px" viewBox="0 0 80 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <pattern id="pattern" width="8" height="8" x="-4" y="-4" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-2" transform="scale(0.4,0.4)"></use>
+        </pattern>
+        <image id="image-2" width="20" height="20" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGOfPtRkwAAATRJREFUOBGtlOsNgzAMhJukA/DYADEIm5VO1nYPZmAEKF+lq0yEQ3/UEtjB54sfCeGySd/347IsN2xJjPE+TdOotdUlfMJJYNu2YV3XgcASGf55np9HeLhSVVUPnCINIby8zCCTiFR4ZR26rlsBlbICDMbbSGRgrrxKYsGb7ZKKI9V1PXrZWTIC6DHtoVwRoFU+/qtHZgN+sWkHFRwKmfHgRNNnHvtNNhgryS6wAXImVV4+/dyfl78jFFibWFICPb8ljQr+l95laKfFBhoYmTVNM6h8Mrd+bMmOkI8izW+ALZ+jI7+Ivprdv4vMwKcJS5/hIxMtgbI93CUccH1uisqx0yJS5Zd6Bk5k2Kd32d4AbIKK8usNOCIhM7ULDVfSv1Bpe+XnhDleRyrRJzkVdEbq4SF9A7MdQwdC86B6AAAAAElFTkSuQmCC"></image>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="112" rx="5"></rect>
+        <rect id="Rectangle" fill="#EEEEEE" x="5" y="5" width="70" height="102" rx="2"></rect>
+        <rect id="Rectangle" fill="url(#pattern)" x="5" y="5" width="70" height="102" rx="2"></rect>
+    </g>
+</svg>

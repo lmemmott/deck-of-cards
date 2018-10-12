@@ -1,0 +1,2 @@
+rsync --exclude node_modules --exclude .git -avz . root@a.pakastin.fi:/home/cards/
+rsync --exclude node_modules --exclude .git -avz . root@b.pakastin.fi:/home/cards/

@@ -1,40 +1,34 @@
 {
   "name": "deck-of-cards",
-  "version": "0.1.9",
-  "description": "HTML5 Deck of Cards",
-  "main": "dist/deck.min.js",
-  "module": "lib/deck.js",
-  "jsnext:main": "lib/deck.js",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "build-js": "rollup --name Deck -f iife lib/deck.js | babel -o dist/deck.js && uglifyjs dist/deck.js -cmo dist/deck.min.js",
-    "build-css": "stylus -u nib css/index.styl -o example/example.css",
-    "build-html": "jade -P views/index.jade -o example/",
-    "postversion": "git push --tags"
+    "dev": "node watch",
+    "build-css": "stylus -w -u nib css/index.styl -o public/css/main.css",
+    "build-js": "rollup -m -w -c -f iife js/index.mjs -o public/js/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pakastin/deck-of-cards.git"
   },
-  "keywords": [
-    "html5",
-    "deck",
-    "of",
-    "cards"
-  ],
   "author": "Juha Lindstedt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pakastin/deck-of-cards/issues"
   },
   "homepage": "https://github.com/pakastin/deck-of-cards#readme",
+  "dependencies": {},
   "devDependencies": {
-    "babel": "^5.8.23",
-    "chokidar": "^1.0.5",
-    "jade": "^1.11.0",
-    "nib": "^1.1.0",
-    "rollup": "^0.16.4",
-    "stylus": "^0.52.0",
-    "uglify-js": "^2.4.24"
-  }
+    "@babel/core": "~7.1.2",
+    "chokidar": "~2.0.4",
+    "nib": "~1.1.2",
+    "redom": "~3.14.1",
+    "rollup": "~0.66.4",
+    "rollup-plugin-babel": "~4.0.3",
+    "rollup-plugin-butternut": "~0.1.0",
+    "rollup-plugin-node-resolve": "~3.4.0",
+    "stylus": "~0.54.5"
+  },
+  "description": "Deck of Cards"
 }
