@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node watch",
-    "build-css": "stylus -w -u nib css/index.styl -o public/css/main.css",
-    "build-js": "rollup -m -w -c -f iife js/index.mjs -o public/js/main.js",
+    "build-css": "stylus -w -u nib css/index.styl -o dist/deck.css",
+    "build-js": "rollup -n deck -w -c -f iife mjs/index.mjs -o dist/deck.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
