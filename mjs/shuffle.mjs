@@ -8,6 +8,15 @@ export default async (deck, cb) => {
 };
 
 const doShuffle = (deck) => {
+  if (deck.shuffling) {
+    return;
+  }
+  deck.shuffling = true;
+
+  if (!deck.cards.length) {
+    return;
+  }
+
   const indexes = deck.cards.map(card => card.index);
 
   fisheryates(indexes);
@@ -91,19 +100,20 @@ const doShuffle = (deck) => {
 
           if (t === 1) {
             if (i === 0) {
-              const next = deck.el.firstChild;
+              const next = deck.$cards.firstChild;
 
               if (card.el !== next.previousSibling) {
-                deck.el.insertBefore(card.el, next);
+                deck.$cards.insertBefore(card.el, next);
               }
             } else {
               const next = shuffles[i - 1].card.el.nextSibling;
+
               if (next) {
                 if (next.previousSibling !== card.el) {
-                  deck.el.insertBefore(card.el, next);
+                  deck.$cards.insertBefore(card.el, next);
                 }
               } else {
-                deck.el.appendChild(card.el);
+                deck.$cards.appendChild(card.el);
               }
             }
             resolve();
@@ -126,6 +136,7 @@ const doShuffle = (deck) => {
 
         if (t === 1) {
           if (i === shuffles.length - 1) {
+            deck.shuffling = false;
             resolve();
           }
         }
