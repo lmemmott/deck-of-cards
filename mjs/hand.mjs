@@ -5,7 +5,10 @@ import deal from './deal.mjs';
 
 export default class Hand {
   constructor ({ x = 0, y = 0, z = 0, rotate = false, spread = 1 / 6 } = {}) {
-    this.el = el('.hand');
+    this.el = el('.hand',
+      el('.hand-bg'),
+      this.$cards = el('.cards')
+    );
     this.cards = [];
     this.rotate = rotate;
     this.spread = spread;
@@ -65,7 +68,7 @@ export default class Hand {
       card.parent.remove(card);
     }
     this.cards.push(card);
-    this.el.appendChild(card.el);
+    this.$cards.appendChild(card.el);
     card.parent = this;
     for (let i = 0; i < this.cards.length; i++) {
       const { x, y, z } = this.getPosition(i);
