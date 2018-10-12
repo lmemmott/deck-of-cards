@@ -4,7 +4,7 @@ export default class Scene {
   constructor () {
     this.el = el('.scene');
   }
-  append (view) {
+  push (view) {
     mount(this.el, view.el);
   }
 }
