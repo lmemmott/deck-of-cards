@@ -7,7 +7,10 @@ import deal from './deal.mjs';
 
 export default class Deck {
   constructor ({ x = 0, y = 0, z = 0 } = {}) {
-    this.el = el('.deck');
+    this.el = el('.deck',
+      el('.deck-bg'),
+      this.$cards = el('.cards')
+    );
     this.cards = [];
     this.generate(52);
     this.set({ x, y, z });
@@ -74,7 +77,7 @@ export default class Deck {
     }
     this.cards.push(card);
     card.parent = this;
-    this.el.appendChild(card.el);
+    this.$cards.appendChild(card.el);
 
     for (let i = 0; i < this.cards.length; i++) {
       const { x, y, z } = this.getPosition(i);
@@ -86,6 +89,9 @@ export default class Deck {
     return shuffle(this);
   }
   dealTo (target, { side, delay = 0, index = this.cards.length - 1, moveDeck = false } = {}, cb) {
+    if (!this.cards.length) {
+      return;
+    }
     return new Promise(async (resolve) => {
       if (moveDeck) {
         await this.animateTo({
