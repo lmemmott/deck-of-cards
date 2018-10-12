@@ -26,6 +26,16 @@ body {
 .hand {
   position: absolute;
 }
+.deck .cards,
+.hand .cards {
+  position: absolute;
+}
+.deck-bg {
+  position: absolute;
+}
+.hand-bg {
+  position: absolute;
+}
 .card {
   position: absolute;
   will-change: transform;
@@ -134,9 +144,4 @@ body {
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
-}
-@media (max-height: 480px) {
-  html {
-    font-size: 75%;
-  }
 }
