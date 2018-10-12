@@ -2,6 +2,7 @@
   "name": "deck-of-cards",
   "version": "1.0.0",
   "main": "index.js",
+  "module": "mjs/index.mjs",
   "scripts": {
     "dev": "node watch",
     "build-css": "stylus -w -u nib css/index.styl -o dist/deck.css",
