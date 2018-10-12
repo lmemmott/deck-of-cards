@@ -1,11 +1,11 @@
 import animate from './animate.mjs';
 
-export default (deck) => {
+export default (deck, { delay = 300 } = {}) => {
   return new Promise((resolve) => {
     deck.cards.forEach((card, i) => {
       card.el.style.opacity = 0;
       animate({
-        delay: (300 + i / deck.cards.length * 750),
+        delay: (delay + i / deck.cards.length * 750),
         duration: 400,
         from: {
           opacity: 0,
