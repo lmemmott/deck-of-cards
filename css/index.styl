@@ -17,12 +17,15 @@ body {
 }
 .deck, .hand {
   position: absolute;
-}
 
-@import 'card.styl';
-
-@media (max-height: 480px) {
-  html {
-    font-size: 75%;
+  .cards {
+    position: absolute;
   }
 }
+.deck-bg {
+  position: absolute;
+}
+.hand-bg {
+  position: absolute;
+}
+@import 'card.styl';
