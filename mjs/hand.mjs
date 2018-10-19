@@ -2,6 +2,7 @@ import { el } from 'redom';
 
 import animate from './animate.mjs';
 import deal from './deal.mjs';
+import queue from './queue.mjs';
 
 export default class Hand {
   constructor ({ x = 0, y = 0, z = 0, rotate = false, spread = 1 / 6 } = {}) {
@@ -13,6 +14,9 @@ export default class Hand {
     this.rotate = rotate;
     this.spread = spread;
     this.set({ x, y, z });
+  }
+  queue (handler) {
+    queue(this, handler);
   }
   set ({ x = this.x, y = this.y, z = this.z, r = this.r }) {
     this.x = x;
