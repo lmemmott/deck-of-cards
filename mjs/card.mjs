@@ -1,64 +1,25 @@
-import { el, list, mount, unmount } from 'redom';
+import { el, mount, unmount } from 'redom';
 
 import animate from './animate.mjs';
-import { suitpos, suits, ranks } from './card-properties.mjs';
+
+import Front from './card-front.mjs';
 
 export default class Card {
-  constructor (index) {
+  constructor (index, side = 'front') {
     this.el = el('.card',
       this.container = el('.card-container',
-        this.front = el(`.card-front`,
-          this.suits = list('.card-suits', Suit),
-          el('.card-tl',
-            this.rank1 = el('.card-rank'),
-            this.suit1 = el('.card-suit')
-          ),
-          el('.card-br',
-            this.rank2 = el('.card-rank'),
-            this.suit2 = el('.card-suit')
-          )
-        ),
+        this.front = new Front(),
         this.back = el('.card-back',
           this.backTexture = el('.card-back-texture')
         )
       )
     );
     this.setIndex(index % 52);
-    this.side = 'front';
+    this.side = side;
   }
   setIndex (index) {
-    if (index == null) {
-      this.front.className = 'card-front';
-      this.suits.update([]);
-      this.rank1.textContent = '';
-      this.rank2.textContent = '';
-      this.suit1.textContent = '';
-      this.suit2.textContent = '';
-      return;
-    }
     this.index = index;
-
-    const suit = Math.floor(index / 13) % 4;
-    const value = index % 13;
-    const color = Math.floor(index / 13) % 2 ? 'red' : 'black';
-
-    const ace = value === 0;
-    const royal = value > 9;
-
-    if (color === 'red') {
-      this.front.classList.add('red');
-      this.front.classList.remove('black');
-    } else {
-      this.front.classList.add('black');
-      this.front.classList.remove('red');
-    }
-
-    this.value = value + 1;
-    this.suits.update(suitpos[value], { suit, value, color, ace, royal });
-    this.rank1.textContent = ranks[value];
-    this.rank2.textContent = ranks[value];
-    this.suit1.style.backgroundImage = `url(img/${suits[suit]}.svg)`;
-    this.suit2.style.backgroundImage = `url(img/${suits[suit]}.svg)`;
+    this.front.update(index);
   }
   set ({ x = this.x, y = this.y, z = this.z }) {
     this.x = x;
@@ -71,7 +32,7 @@ export default class Card {
   }
   animateTo ({ x, y, z, delay = 0, duration = 200, easing = 'quartInOut' }, cb, pcb) {
     animate({
-      from: { x, y, z },
+      from: { x: this.x, y: this.y, z: this.z },
       to: { x, y, z },
       delay,
       duration,
@@ -168,23 +129,3 @@ export default class Card {
 Card.create = (index, z) => {
   return new Card(index, z);
 };
-
-class Suit {
-  constructor () {
-    this.el = el('.card-suit');
-  }
-  update (pos, index, data, { value, suit, ace, royal }) {
-    if (royal) {
-      this.el.textContent = ranks[value];
-      this.el.style.backgroundImage = '';
-    } else {
-      this.el.textContent = '';
-      this.el.style.backgroundImage = `url(img/${suits[suit]}.svg)`;
-    }
-    this.el.className = ace ? 'card-suit ace' : royal ? 'card-suit royal' : 'card-suit';
-    this.el.style.left = `${pos[0] * 100}%`;
-    this.el.style.top = `${pos[1] * 100}%`;
-    this.el.style.transform = `translate(-50%, -50%) rotate(${!!pos[2] * 180}deg)`;
-    this.el.style.fontWeight = royal ? '300' : '';
-  }
-}
