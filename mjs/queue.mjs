@@ -10,13 +10,17 @@ const serve = (target) => {
     return;
   }
 
+  if (!target._queue.length) {
+    return;
+  }
+
   target._queueServing = true;
 
-  const action = target._queue.unshift();
+  const action = target._queue.shift();
 
   const cb = () => {
-    this._queueServing = false;
-    serve();
+    target._queueServing = false;
+    serve(target);
   };
 
   action(cb);

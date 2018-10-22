@@ -1,9 +1,6 @@
 import { el } from 'redom';
 
 import Card from './card.mjs';
-import shuffle from './shuffle.mjs';
-import animate from './animate.mjs';
-import deal from './deal.mjs';
 
 export default class Deck {
   constructor ({ x = 0, y = 0, z = 0 } = {}) {
@@ -20,36 +17,6 @@ export default class Deck {
     this.y = y;
     this.z = z;
     this.el.style.transform = `translate(${x * 5 - z / 52}em, ${y * 7 - z / 52}em)`;
-  }
-  animateTo ({ x = this.x, y = this.y, z = this.z, delay = 0, duration = 400, easing = 'cubicInOut' }, cb, pcb) {
-    return new Promise((resolve) => {
-      animate({
-        from: {
-          x: this.x,
-          y: this.y,
-          z: this.z
-        },
-        to: {
-          x,
-          y,
-          z
-        },
-        delay,
-        duration,
-        easing
-      }, ({ x, y, z }, t) => {
-        this.set({ x, y, z });
-
-        if (pcb) {
-          pcb(t);
-        }
-
-        if (t === 1) {
-          cb && cb();
-          resolve();
-        }
-      });
-    });
   }
   generate (count) {
     for (let i = 0; i < count; i++) {
@@ -84,25 +51,5 @@ export default class Deck {
 
       this.cards[i].set({ x, y, z });
     }
-  }
-  shuffle () {
-    return shuffle(this);
-  }
-  dealTo (target, { side, delay = 0, index = this.cards.length - 1, moveDeck = false } = {}, cb) {
-    if (!this.cards.length) {
-      return;
-    }
-    return new Promise(async (resolve) => {
-      if (moveDeck) {
-        await this.animateTo({
-          x: target.x + (target.rotate ? -1 : 1) * target.cards.length * target.spread,
-          y: target.y + 1,
-          duration: 250,
-          delay
-        });
-      }
-      await deal(this, this.cards[index], target, { duration: 200, side, delay: moveDeck ? 0 : delay }, cb);
-      resolve();
-    });
   }
 }

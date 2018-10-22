@@ -1,7 +1,5 @@
 import { el, mount, unmount } from 'redom';
 
-import animate from './animate.mjs';
-
 import Front from './card-front.mjs';
 
 export default class Card {
@@ -30,25 +28,6 @@ export default class Card {
   _set ({ x = this.x, y = this.y, z = this.z }) {
     this.el.style.transform = `translate(${x * 5 - z / 52}em, ${y * 7 - z / 52}em)`;
   }
-  animateTo ({ x, y, z, delay = 0, duration = 200, easing = 'quartInOut' }, cb, pcb) {
-    animate({
-      from: { x: this.x, y: this.y, z: this.z },
-      to: { x, y, z },
-      delay,
-      duration,
-      easing
-    }, ({ x, y, z }, t) => {
-      this.set({ x, y, z });
-
-      if (pcb) {
-        pcb(t);
-      }
-
-      if (cb && t === 1) {
-        cb();
-      }
-    });
-  }
   get side () {
     return this._side;
   }
@@ -64,62 +43,6 @@ export default class Card {
       this.back.style.display = '';
     }
     this._side = side;
-  }
-  flipTo (target, { side, delay = 0 }) {
-    return new Promise(async (resolve) => {
-      if (this.side === side) {
-        return;
-      }
-      const y = this.y;
-      await new Promise((resolve) => {
-        animate({
-          from: {
-            y
-          },
-          to: {
-            y: y + 1
-          },
-          delay,
-          duration: 150,
-          easing: 'cubicInOut'
-        }, ({ y }, t) => {
-          this.set({ y });
-
-          if (t === 1) {
-            resolve();
-          }
-        });
-      });
-      target.push(this);
-      this.set({ y: y + 1 });
-
-      await new Promise((resolve) => {
-        animate({
-          from: {
-            y: y + 1
-          },
-          to: {
-            y
-          },
-          duration: 150,
-          easing: 'cubicInOut'
-        }, ({ y }, t) => {
-          this.set({ y });
-
-          if (t > 0.45) {
-            if (this.side !== side) {
-              this.side = side;
-            }
-          }
-
-          if (t === 1) {
-            resolve();
-          }
-        });
-      });
-      this.side = side;
-      resolve();
-    });
   }
   dealTo (target, { side, delay, index = this.parent.cards.indexOf(this) }) {
     return this.parent.dealTo(target, { side, delay, index });
