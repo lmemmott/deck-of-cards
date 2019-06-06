@@ -7,14 +7,14 @@
     <meta name="author" content="Juha Lindstedt">
     <meta property="og:title" content="HTML5 Deck of Cards" />
     <meta property="og:description" content="Play with Deck of Cards, source available! Pure vanilla JS – no dependencies.">
-    <meta property="og:image" content="https://deck-of-cards.js.org/fb.png" />
-    <meta property="og:url" content="https://deck-of-cards.js.org">
+    <meta property="og:image" content="./fb.png" />
+    <!-- <meta property="og:url" content="https://deck-of-cards.js.org"> -->
     <meta property="twitter:card" content="summary">
     <meta property="twitter:site" content="@pakastin">
     <meta property="twitter:creator" content="@pakastin">
     <meta property="twitter:title" content="HTML5 Deck of Cards">
     <meta property="twitter:description" content="Play with Deck of Cards, source available! Pure vanilla JS – no dependencies.">
-    <meta property="twitter:image" content="https://deck-of-cards.js.org/fb.png">
+    <meta property="twitter:image" content="./fb.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>HTML5 Deck of Cards</title>
@@ -48,9 +48,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
     <script>
       FastClick.attach(document.body);
-      if ((window.location.protocol !== 'file:') && (window.location.hostname !== 'deck-of-cards.js.org')) {
-        window.location.href = 'https://deck-of-cards.js.org'
-      }
+      // if ((window.location.protocol !== 'file:') && (window.location.hostname !== 'deck-of-cards.js.org')) {
+      //   window.location.href = 'https://deck-of-cards.js.org'
+      // }
 
       window.addEventListener('keydown', function (e) {
         if ((e.key === 'h') && (e.ctrlKey || e.metaKey)) {
